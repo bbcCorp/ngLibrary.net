@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "../wwwroot",
+      "outDir": "dist",
       "assets": [
         "assets",
         "favicon.ico"
@@ -55,6 +55,7 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "component": {},
+    "serve": { "host": "0.0.0.0", "port": 4200 }
   }
 }

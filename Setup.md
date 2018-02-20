@@ -24,14 +24,15 @@ Additionally, we will need a Test project to test Core libraries, data libraries
 ## Initializing project from standard template
 So let's get started. We will use standard templates to bootstrap the application. 
 
-You can read more about the dotnet new command here: https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore2x
+You can read more about the dotnet new command [here](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore2x)
 
-
+```
 $ dotnet new classlib -o ngLibrary.Model
 $ dotnet new classlib -o ngLibrary.Core
 $ dotnet new classlib -o ngLibrary.Data
 $ dotnet new xunit -o ngLibrary.Test
 $ dotnet new webapi -o ngLibrary.Web
+```
 
 That will lay out the necessary project structure. 
 
@@ -163,3 +164,5 @@ Open up the Startup.cs file and add the following lines to make sure that defaul
 app.UseDefaultFiles();
 app.UseStaticFiles();
 ```
+
+In this application, we will use a different approach. We will segregate the Angular client and Aspnetcore server applciations and host them using Docker containers.

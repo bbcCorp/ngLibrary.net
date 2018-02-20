@@ -23,6 +23,20 @@ namespace ngLibrary.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
+            // Enable CORS so other client application can consume the APIs
+            var clientHost = Configuration["ClientApp:host"];
+            var clientPort = Configuration["ClientApp:port"];
+            services.AddCors( options => {
+                 options.AddPolicy("allow-nglibrary-client-access", 
+                    policy => policy.WithOrigins($"http://{clientHost}:{clientPort}")
+                    //.AllowAnyMethod()
+                );
+            });
+
+
+
             services.AddMvc();
         }
 
@@ -34,9 +48,8 @@ namespace ngLibrary.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-            
+            app.UseCors("allow-nglibrary-client-access");
+
             app.UseMvc();
         }
     }

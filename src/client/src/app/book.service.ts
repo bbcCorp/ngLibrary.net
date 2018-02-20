@@ -12,14 +12,14 @@ export class BookService{
     }
 
     getBooks(){
-        let apiUrl = "api/books";
+        let apiUrl = "http://localhost:5000/api/books";
 
-        // Note: The map function used here is the Rxjs map function 
+        // Note: The map function used here is the Rxjs map function
         // which works on Observables
         return this.http
             .get(apiUrl)
-            .map((res: Response) => { 
-                return res.json() 
+            .map((res: Response) => {
+                return res.json()
             });
     }
 }
