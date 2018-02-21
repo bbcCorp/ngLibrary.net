@@ -21,5 +21,11 @@ COPY . .
 ## Build the angular app in production mode and store the artifacts in dist folder
 RUN $(npm bin)/ng build --prod --build-optimizer
 
-EXPOSE 4200
-CMD [ "npm" , "start"]
+# To test the build comment the nginx lines and uncomment the following lines
+# EXPOSE 4200
+# CMD [ "npm" , "start"]
+
+### STAGE 2: Host using Nginx ###
+FROM nginx:latest
+COPY --from=builder /ng-app/dist/ /usr/share/nginx/html
+COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf

@@ -1,0 +1,62 @@
+version: '3'
+services:
+  # Run 1 instances a service called run-api - this starts the aspnetcore web api server
+  run-api:
+    image: nglibrary-webapi-server
+    container_name: myapp.dev.api
+    build:
+      context: ../src/server/ngLibrary.Web
+      dockerfile: Dockerfile
+    environment:
+      - NGLIBRARY_HOST=API1      
+      - ASPNETCORE_ENVIRONMENT=development
+      - ClientApp__host=localhost
+      - ClientApp__port=4200      
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 500M
+      restart_policy:
+        # Immediately restart containers if one fails.
+        condition: on-failure      
+    ports:
+      - "5000:80"
+    # depends_on:
+    #   - run-db
+    # links:
+    #   - run-db:db
+
+  # Run 1 instances a service called run-web - this starts the nginx client application server
+  run-web:
+    image: nglibrary-webclient-server
+    container_name: nglibrary.client.dev
+    build:
+      context: ../src/client
+      dockerfile: Dockerfile
+    environment:
+      - NGLIBRARY_HOST=WFE1
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 500M
+      restart_policy:
+        # Immediately restart containers if one fails.
+        condition: on-failure      
+    ports:
+      - "4200:80"
+
+  # run-db:
+  #   image: microsoft/mssql-server-linux:latest
+  #   container_name: myapp.dev.db
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - MSSQL_PID=Express
+  #     - SA_PASSWORD=this1sMyAppSecretPassw0rd
+  #   ports:
+  #     - "1433:1433"
+  #   expose:
+  #     - 1433    
