@@ -27,6 +27,10 @@ services:
     #   - run-db
     # links:
     #   - run-db:db
+    networks:
+      # web containers share port 80 via a load-balanced network called webnet
+      - webnet
+
 
   # Run 1 instances a service called run-web - this starts the nginx client application server
   run-web:
@@ -60,3 +64,9 @@ services:
   #     - "1433:1433"
   #   expose:
   #     - 1433    
+  # networks:
+  #   # web containers share port 80 via a load-balanced network called webnet
+  #   - webnet
+  
+networks:
+  webnet:

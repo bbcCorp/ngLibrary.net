@@ -1,26 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 // import { map } from 'rxjs/operators';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 
 @Injectable()
-export class BookService{
+export class BookService {
 
-    constructor(private http: Http){
+    constructor(private http: HttpClient) {
 
     }
 
-    getBooks(){
-        let apiUrl = "http://localhost:5000/api/books";
+    getBooks() {
+        const apiUrl = 'http://localhost:5000/api/books';
 
         // Note: The map function used here is the Rxjs map function
         // which works on Observables
         return this.http
-            .get(apiUrl)
-            .map((res: Response) => {
-                return res.json()
-            });
+            .get<string[]>(apiUrl);
     }
 }
 
