@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { BookService } from './book.service';
+import { Component, Inject } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -7,16 +7,8 @@ import { BookService } from './book.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  books: string[];
-  constructor(private bookService: BookService){
-    this.books = [];
-    this.fetchBooks();
+  title = 'NewGen Library';
+  constructor() {
   }
 
-  fetchBooks(){
-    this.bookService.getBooks().subscribe(res => {
-      this.books = res;
-    })
-  }
 }

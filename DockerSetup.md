@@ -25,7 +25,7 @@ We can host the client inside a node docker container.
 
 Here's the steps to setup and run the server 
 ```
-$ cd src/server/ngLibrary.Web/
+$ cd src/client/
 $ docker build -t nglibrary-webclient-server .
 
 $ docker run -it -p 4200:4200 nglibrary-webclient-server

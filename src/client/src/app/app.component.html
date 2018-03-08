@@ -1,3 +1,28 @@
-<li *ngFor="let book of books">
-  {{book}}
-</li>
+<ng-container>
+  <mat-toolbar class="ngLibrary-header">NewGen Library</mat-toolbar>
+
+  <mat-sidenav-container class="ngLibrary-sidenav-container" (backdropClick)="close('backdrop')">
+
+    <mat-sidenav #ngLibrarySidenav class="ngLibrary-sidenav" (keydown.escape)="close('escape')">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard">Dashboard</a>
+        <a mat-list-item routerLink="/transact">Transact</a>
+        <a mat-list-item routerLink="/admin">Administration</a>
+        <a mat-list-item routerLink="/about">About</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="ngLibrary-sidenav-content">
+        <button type="button" mat-button (click)="ngLibrarySidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+  <router-outlet></router-outlet>
+
+  <mat-toolbar class="ngLibrary-footer">Footer</mat-toolbar>
+</ng-container>
