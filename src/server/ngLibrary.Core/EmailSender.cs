@@ -24,18 +24,18 @@ namespace ngLibrary.Core
 
     public class EmailService : IEmailSender
     {
-        private IConfigurationRoot _config;
+        private IConfiguration _config;
         private ILogger<EmailService> _logger;
         private SmtpConfig smtpConfig;
 
 
-        public EmailService(ILogger<EmailService> logger, IConfigurationRoot config)
+        public EmailService(ILogger<EmailService> logger, IConfiguration config)
         {
             if (logger == null)
                 throw new ArgumentNullException("Object implementing ILogger needed for object initialization");
 
             if (config == null)
-                throw new ArgumentNullException("Object implementing IConfigurationRoot needed for object initialization");
+                throw new ArgumentNullException("Object implementing IConfiguration needed for object initialization");
 
             _config = config;
             _logger = logger;

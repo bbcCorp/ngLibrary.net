@@ -19,16 +19,16 @@ namespace ngLibrary.Web.Controllers
 
         private IBookRepository _repo;
         private ILogger<BooksController> _logger;
-        private IConfigurationRoot _config;
+        private IConfiguration _config;
         private IMapper _mapper { get; set; }
 
-        public BooksController(IBookRepository repo, IMapper mapper, ILogger<BooksController> logger, IConfigurationRoot config)
+        public BooksController(IBookRepository repo, IMapper mapper, ILogger<BooksController> logger, IConfiguration config)
         {
             if (logger == null)
                 throw new ArgumentNullException("Object implementing ILogger needed for object initialization");
 
             if (config == null)
-                throw new ArgumentNullException("Object implementing IConfigurationRoot needed for object initialization");
+                throw new ArgumentNullException("Object implementing IConfiguration needed for object initialization");
 
             if (mapper == null)
                 throw new ArgumentNullException("Object implementing IMapper(AutoMapper) needed for object initialization");
@@ -49,7 +49,7 @@ namespace ngLibrary.Web.Controllers
         {
             try
             {
-                var result = _mapper.Map<BookViewModel>(_repo.GetAllBooks());
+                var result = _mapper.Map<IEnumerable<BookViewModel>>(_repo.GetAllBooks());
 
                 return Ok(result);
             }

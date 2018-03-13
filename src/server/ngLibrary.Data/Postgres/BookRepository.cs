@@ -16,13 +16,13 @@ namespace ngLibrary.Data.Postgres
         private readonly ILogger<PgBookRepository> _logger;
         private string _connectionString;
 
-        public PgBookRepository(ILogger<PgBookRepository> logger, IConfigurationRoot config)
+        public PgBookRepository(ILogger<PgBookRepository> logger, IConfiguration config)
         {
             if (logger == null)
                 throw new ArgumentNullException("Object implementing ILogger needed for object initialization");
 
             if (config == null)
-                throw new ArgumentNullException("Object implementing IConfigurationRoot needed for object initialization");
+                throw new ArgumentNullException("Object implementing IConfiguration needed for object initialization");
 
             _logger = logger;
 
@@ -107,7 +107,7 @@ namespace ngLibrary.Data.Postgres
                 {
                     dbConnection.Open();
 
-                    var sQuery = "INSERT INTO ngLib.Books (title, description, isbn, isbn13, authors, publisher, publication_year, created_date, created_by, tstamp)"
+                    var sQuery = "INSERT INTO ngLib.Books (title, description, isbn, isbn13, authors, publisher, publication_year, created_date, created_by, update_tstamp)"
                            + " VALUES(@Title, @Description, @ISBN, @ISBN13, @Authors, @Publisher, @PublicationYear, @CreatedDate, @CreatedBy, @Timestamp);"
                            + " SELECT CAST(SCOPE_IDENTITY() as int)";
 
@@ -139,7 +139,7 @@ namespace ngLibrary.Data.Postgres
                 {
                     dbConnection.Open();
 
-                    var sQuery = "UPDATE ngLib.Books SET title=@Title, description=@Description, isbn=@ISBN, isbn13=@ISBN13, authors=@Authors, publisher=@Publisher, publication_year=@PublicationYear, Timestamp=@Timestamp "
+                    var sQuery = "UPDATE ngLib.Books SET title=@Title, description=@Description, isbn=@ISBN, isbn13=@ISBN13, authors=@Authors, publisher=@Publisher, publication_year=@PublicationYear, update_tstamp=@Timestamp "
                            + " WHERE ID = @ID";
 
                     using (var dbtranx = dbConnection.BeginTransaction())

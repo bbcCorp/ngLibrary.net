@@ -18,7 +18,7 @@ namespace ngLibrary.Web.Models.ViewModels
       public string Description { get; set; }
 
       [Required]
-      public string[] Authors { get; set; }
+      public string Authors { get; set; }
 
       [Required]
       public string Publisher { get; set; }
