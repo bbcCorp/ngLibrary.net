@@ -1,14 +1,14 @@
-import { AppPage } from './app.po';
+import { AngularNgrxMaterialStarterPage } from './app.po';
 
-describe('client-app App', () => {
-  let page: AppPage;
+describe('angular-ngrx-material-starter App', () => {
+  let page: AngularNgrxMaterialStarterPage;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new AngularNgrxMaterialStarterPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('ANGULAR NGRX MATERIAL STARTER');
   });
 });

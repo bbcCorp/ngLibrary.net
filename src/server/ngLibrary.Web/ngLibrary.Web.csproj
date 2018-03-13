@@ -10,10 +10,19 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.4.1" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ngLibrary.Model\ngLibrary.Model.csproj" />
+    <ProjectReference Include="..\ngLibrary.Core\ngLibrary.Core.csproj" />
+    <ProjectReference Include="..\ngLibrary.Data\ngLibrary.Data.csproj" />
   </ItemGroup>
 
 </Project>

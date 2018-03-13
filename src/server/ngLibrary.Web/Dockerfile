@@ -7,6 +7,9 @@ WORKDIR /source
 ENV ClientApp__host localhost
 ENV ClientApp__port 4200
 
+# Note ":" in appsettings.json is replaced with "__"
+ENV KLENS_ConnectionStrings__ngLibraryDbConnection $KLENS_ConnectionStrings__ngLibraryDbConnection
+
 # caches restore result by copying csproj file separately
 COPY *.csproj .
 RUN dotnet restore
